@@ -51,8 +51,8 @@ class ShipheroProductObserver implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $enableOrderUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_order_update');
-        if (empty($enableOrderUpdate)) {
+        $enableProductUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update');
+        if (empty($enableProductUpdate)) {
             return;
         }
         
