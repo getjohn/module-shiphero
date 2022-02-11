@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © GetJohn Ltd 2019
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="shiphero_shiphero" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1">
+			<class>separator-top</class>
+			<label>ShipHero</label>
+			<tab>service</tab>
+			<resource>Shiphero_Shiphero::link</resource>
+			<group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1">
+				<label>General</label>
+				<field id="enable_product_update" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+					<label>Enable Product Update</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="enable_order_update" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+					<label>Enable Order Update</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

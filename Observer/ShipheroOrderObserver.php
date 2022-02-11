@@ -7,6 +7,8 @@ use Magento\Framework\Event\ObserverInterface;
 
 class ShipheroOrderObserver implements ObserverInterface
 {
+    private $scopeConfig;
+
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Framework\App\ResourceConnection $resource,
@@ -15,6 +17,7 @@ class ShipheroOrderObserver implements ObserverInterface
 
         $this->host = "https://api-gateway.shiphero.com/v1/magento2/webhooks/orders";
         $this->url = $this->host;
+        $this->scopeConfig = $scopeConfig;
     }
 
     public function makeRequest($data)
@@ -61,6 +64,11 @@ class ShipheroOrderObserver implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+        $enableProductUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update');
+        if (empty($enableProductUpdate)) {
+            return;
+        }
+
         $event = $observer->getEvent();
         $data = $event->getData();
 
