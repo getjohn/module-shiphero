@@ -3,6 +3,7 @@
 namespace Shiphero\Shiphero\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Store\Model\ScopeInterface;
 
 
 class ShipheroProductObserver implements ObserverInterface
@@ -51,11 +52,6 @@ class ShipheroProductObserver implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $enableProductUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update');
-        if (empty($enableProductUpdate)) {
-            return;
-        }
-        
         $event = $observer->getEvent();
         $data = $event->getData();
 
@@ -68,6 +64,12 @@ class ShipheroProductObserver implements ObserverInterface
             $product = $event->getProduct();
 
         } else {
+            return;
+        }
+
+        $websiteIds = $product->getWebsiteIds();
+        $enableOrderUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update', ScopeInterface::SCOPE_WEBSITE, array_first($websiteIds));
+        if (empty($enableOrderUpdate)) {
             return;
         }
 
