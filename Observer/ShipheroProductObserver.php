@@ -68,7 +68,7 @@ class ShipheroProductObserver implements ObserverInterface
         }
 
         $websiteIds = $product->getWebsiteIds();
-        $enableOrderUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update', ScopeInterface::SCOPE_WEBSITE, array_first($websiteIds));
+        $enableOrderUpdate = $this->scopeConfig->getValue('shiphero_shiphero/general/enable_product_update', ScopeInterface::SCOPE_WEBSITE, reset($websiteIds));
         if (empty($enableOrderUpdate)) {
             return;
         }
